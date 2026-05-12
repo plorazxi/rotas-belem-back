@@ -60,7 +60,8 @@ Para iniciar o servidor em modo de desenvolvimento com hot-reload:
 npm run dev
 ```
 O servidor estará disponível em http://localhost:3000.
-📑 Documentação da API
+
+## 📑 Documentação da API
 
 Todas as rotas abaixo utilizam o prefixo /rotas.
 1. Listar todas as rotas
