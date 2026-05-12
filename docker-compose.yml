@@ -1,0 +1,29 @@
+services: 
+  app:
+    build: .
+    image: app:dev
+    container_name: app_container
+    restart: on-failure
+    depends_on:
+      - db
+    ports:
+      - "${SERVER_PORT}:3000"
+    environment:
+      DATABASE_URL: "${DOCKER_DATABASE_URL}"
+  db:
+    image: postgis/postgis:15-3.4
+    container_name: postgis_container
+    restart: on-failure
+    ports:
+      - "${POSTGRES_PORT}:5432" 
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+  adminer: # Serviço para vizualizar o db
+    image: adminer:standalone
+    restart: on-failure
+    ports:
+      - "8080:8080"
